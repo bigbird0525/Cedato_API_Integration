@@ -1,5 +1,5 @@
 # Cedato_API_Integration
-Project integrates with Cedato's v1 API. It connects to the API and authenticates. Once complete, it uses the returned authorization token to pull down all of the unique supply IDs. Once complete, it pulls demand performance for each supply id, runs the performance through a series of filters using the pandas library, and then unaligns poor performing demand sources that don't pass the filter. 
+Project integrates with Cedato's v1 API. It connects to the API and authenticates with a pre-generated key. Once authenticated, we are able to pull down a variety of performance metrics. After pulling down the performance for the entire network's supply source per each demand ID, the script will unalign poor performing demand IDs via the Cedato API. 
 
 The project dependencies are:
   - pandas

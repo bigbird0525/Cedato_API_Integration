@@ -8,7 +8,7 @@ class AlignmentUpdate(object):
     def removeDemandAlignment(self, token, supply_id, demand_ids):
         payload = {}
         for i in range(len(demand_ids)):
-            payload[str(i)+'[vastId'] = demand_ids[i]
+            payload[str(i)+'[vastId]'] = demand_ids[i]
         header = {
             'accept': 'application/json',
             'api-version': '1',
@@ -17,4 +17,6 @@ class AlignmentUpdate(object):
         }
         endpoint = 'https://api.cedato.com/api/supplies/{0}/demands/multi/detach'.format(supply_id)
         response = requests.patch(endpoint, data=payload,headers=header)
+        if response != '200':
+            print("Supply ID " + str(supply_id) + "returned status code " + str(response.status_code))
         return response

@@ -1,10 +1,12 @@
 '''
 Written by Andrew Ravn
-Last Updated: 23AUG2018
+Last Updated: Sept62018
+supply_type = 0 - HTML player
+supply_type = 1 - Vast
+supply_type = 2 - CedatoX
 '''
 
 from time import sleep
-import pandas as pd
 from cedato.Authenticate import Authenticate as auth
 from cedato.Reports import Reports as rpt
 from cedato.AlignmentUpdate import AlignmentUpdate as aln
@@ -64,9 +66,13 @@ def main():
                     filtered_data.to_csv(path_or_buf=filtered_report, index=False, mode='a', header=True)
                 else:
                     filtered_data.to_csv(path_or_buf=filtered_report, index=False, mode='a', header=False)
-
+                try:
+                    if filtered_data['supply_type'][0] is not '0':
+                        aln().removeDemandAlignment(token, rows['supply_id'], filtered_data['vastId'].tolist())
+                except IndexError:
+                    print("Supply ID " + rows['supply_id'] + " has no optimizations")
         c+=1
-        aln().removeDemandAlignment(token, rows['supply_id'], removeIds)
+
 
 if __name__ == '__main__':
     main()

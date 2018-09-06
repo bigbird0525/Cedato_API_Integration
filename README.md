@@ -3,7 +3,7 @@ Project integrates with Cedato's v1 API. It connects to the API and authenticate
 
 The code includes a simple report writer in order to QA what will be unaligned before committing to the changes.
 
-*** Note: The authentication code needs to be updated to with your unique cedato platform keys
+*** Note: The authentication script, Authenticate.py, needs to be updated to with your unique cedato platform keys
 
 The project dependencies are:
   - pandas
